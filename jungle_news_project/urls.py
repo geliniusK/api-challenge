@@ -15,9 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from django.views.generic import TemplateView
 from rest_auth.views import PasswordResetConfirmView
-from allauth.account.views import ConfirmEmailView
 from rest_framework.documentation import include_docs_urls
 from django.contrib.auth import views as auth_views
 
@@ -27,7 +25,7 @@ API_DESCRIPTION = 'Jungle Devs - Django Challenge #001'
 
 urlpatterns = [
     path('api/password/reset/confirm/<uidb64>/<token>/',
-         auth_views.PasswordResetConfirmView.as_view(),
+         PasswordResetConfirmView.as_view(),
          name='password_reset_confirm'),
     path('password-reset-complete/',
          auth_views.PasswordResetCompleteView.as_view(),
@@ -37,5 +35,4 @@ urlpatterns = [
     path('api/', include('rest_auth.urls')),
     path('api/sign-up/', include('rest_auth.registration.urls')),
     path('docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
-
 ]
