@@ -1,0 +1,27 @@
+version: '3.0'
+
+services:
+  web:
+    build: .
+    command: python /code/manage.py runserver 0.0.0.0:8000
+    environment:
+      - ENVIRONMENT=development
+      - SECRET_KEY=0d92b47c23d86495d3f530412f1354010563ed74969919dca50043174382aaf1
+      - DEBUG=1
+
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  db:
+    image: postgres:12
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+    - POSTGRES_PASSWORD=challenge
+    - POSTGRES_DB=challenge
+
+volumes:
+  postgres_data:

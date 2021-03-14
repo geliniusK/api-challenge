@@ -1,0 +1,19 @@
+version: '3.0'
+
+services:
+  web:
+    build: .
+    command: gunicorn jungle_news_project.wsgi -b 0.0.0.0:8000
+    environment:
+      - ENVIRONMENT=production
+      - SECRET_KEY=0d92b47c23d86495d3f530412f1354010563ed74969919dca50043174382aaf1
+      - DEBUG=0
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  db:
+    image: postgres:12
+    environment:
+    - POSTGRES_PASSWORD=challenge
+    - POSTGRES_DB=challenge

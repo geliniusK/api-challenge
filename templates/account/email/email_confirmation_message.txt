@@ -1,0 +1,12 @@
+{% load account %}
+{% load i18n %}
+{% autoescape off %}{% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+Hello, {{ user_display }}!
+
+This is the Jungle Devs - Django Challenge #001 API.
+User created successfully.
+
+Regards,
+{{ site_name }}
+
+{% endblocktrans %}{% endautoescape %}

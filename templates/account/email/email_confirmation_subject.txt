@@ -1,0 +1,4 @@
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans %}Jungle News API - User Created{% endblocktrans %}
+{% endautoescape %}
